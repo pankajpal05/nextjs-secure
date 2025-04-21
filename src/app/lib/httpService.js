@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import { store } from "../redux/store";
+import { setToken } from "../redux/feature/Token/tokenSlice";
 const COMMON_CONFIG = {
   headers: {
     "Content-Type": "application/json",
@@ -29,6 +30,7 @@ httpService.interceptors.response.use(
         httpService.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${accessToken}`;
+        store.dispatch(setToken(accessToken));
         return httpService(originalRequest);
       } catch (refreshError) {
         return Promise.reject(refreshError);

@@ -8,13 +8,13 @@ const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const bearerToken = useSelector((state) => state.token.accessToken);
-  console.log(bearerToken, "bearerToken");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const fetchToken = await fetchAuthTokens();
       dispatch(setToken(fetchToken.accessToken));
-      console.log(fetchToken, "fetchToken--");
+      setFormData({ email: "", password: "" });
     } catch (err) {
       console.error(err);
     }

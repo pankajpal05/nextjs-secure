@@ -1,4 +1,3 @@
-"use client";
 export const fetchAuthTokens = async () => {
   try {
     const response = await fetch("/api/auth");
